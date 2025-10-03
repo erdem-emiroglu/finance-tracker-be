@@ -1,10 +1,11 @@
+import { AuthModule } from '@auth/auth.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { SupabaseModule } from '@supabase/supabase.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from '@auth/auth.module';
-import { SupabaseModule } from '@supabase/supabase.module';
+import { FinanceModule } from './finance/finance.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { SupabaseModule } from '@supabase/supabase.module';
     ]),
     SupabaseModule,
     AuthModule,
+    FinanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
