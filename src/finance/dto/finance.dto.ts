@@ -141,7 +141,7 @@ export class CreateTransactionDto {
 
   @ApiProperty({
     description: 'Transaction amount',
-    example: 150.50,
+    example: 150.5,
     minimum: 0.01,
   })
   @IsNumber({ maxDecimalPlaces: 2 })
@@ -355,7 +355,7 @@ export class CreateSavingsGoalDto {
 
   @ApiProperty({
     description: 'Target amount',
-    example: 5000.00,
+    example: 5000.0,
     minimum: 0.01,
   })
   @IsNumber({ maxDecimalPlaces: 2 })
@@ -364,7 +364,7 @@ export class CreateSavingsGoalDto {
 
   @ApiPropertyOptional({
     description: 'Current amount',
-    example: 1200.50,
+    example: 1200.5,
     minimum: 0,
   })
   @IsOptional()
@@ -522,7 +522,7 @@ export class CreateSavingsToolDto {
 
   @ApiPropertyOptional({
     description: 'Current value',
-    example: 15000.00,
+    example: 15000.0,
     minimum: 0,
   })
   @IsOptional()
@@ -532,7 +532,7 @@ export class CreateSavingsToolDto {
 
   @ApiPropertyOptional({
     description: 'Initial investment',
-    example: 10000.00,
+    example: 10000.0,
     minimum: 0,
   })
   @IsOptional()
@@ -669,7 +669,7 @@ export class TransactionQueryDto {
 
   @ApiPropertyOptional({
     description: 'Minimum amount filter',
-    example: 10.00,
+    example: 10.0,
   })
   @IsOptional()
   @IsNumber()
@@ -678,7 +678,7 @@ export class TransactionQueryDto {
 
   @ApiPropertyOptional({
     description: 'Maximum amount filter',
-    example: 1000.00,
+    example: 1000.0,
   })
   @IsOptional()
   @IsNumber()

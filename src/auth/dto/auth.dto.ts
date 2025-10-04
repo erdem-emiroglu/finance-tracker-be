@@ -173,23 +173,3 @@ export class ErrorResponseDto {
   })
   details?: string[];
 }
-
-export class HealthCheckDto {
-  @ApiProperty({
-    description: 'Health status',
-    example: 'ok',
-  })
-  status: string;
-
-  @ApiProperty({
-    description: 'Supabase connection status',
-    example: 'connected',
-  })
-  supabase: string;
-
-  @ApiProperty({
-    description: 'Timestamp of health check',
-    example: '2025-01-03T19:00:00.000Z',
-  })
-  timestamp: string;
-}

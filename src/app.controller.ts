@@ -7,83 +7,34 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { AppService } from './app.service';
-import { SupabaseService } from '@supabase/supabase.service';
 import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
-import {
-  HealthCheckDto,
-  ErrorResponseDto,
-  AuthUserDto,
-} from '@auth/dto/auth.dto';
+import { ErrorResponseDto, AuthUserDto } from '@auth/dto/auth.dto';
 
 @Controller()
 export class AppController {
-  constructor(
-    private readonly appService: AppService,
-    private readonly supabaseService: SupabaseService,
-  ) {}
+  constructor(private readonly appService: AppService) {}
 
   @Get()
+  @ApiTags('General')
+  @ApiOperation({
+    summary: 'Welcome endpoint',
+    description: 'Simple welcome message for the Finance Tracker API',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Welcome message',
+    schema: {
+      type: 'string',
+      example: 'Finance Tracker API is running!',
+    },
+  })
   getHello(): string {
     return this.appService.getHello();
   }
 
-  @Get('health')
-  @ApiTags('Health')
-  @ApiOperation({
-    summary: 'Health check endpoint',
-    description:
-      'Check the health status of the application and database connection',
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'Health check successful',
-    type: HealthCheckDto,
-  })
-  async healthCheck() {
-    try {
-      const { error } = await this.supabaseService
-        .getClient()
-        .from('health_check')
-        .select('*')
-        .limit(1);
-
-      return {
-        status: 'ok',
-        supabase: error ? 'disconnected' : 'connected',
-        timestamp: new Date().toISOString(),
-      };
-    } catch {
-      return {
-        status: 'error',
-        supabase: 'disconnected',
-        timestamp: new Date().toISOString(),
-      };
-    }
-  }
-
-  @Get('supabase-test')
-  async testSupabase() {
-    try {
-      const { data, error } = await this.supabaseService
-        .getClient()
-        .auth.getUser();
-
-      return {
-        success: true,
-        auth: !!data?.user,
-        error: error?.message,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown error',
-      };
-    }
-  }
-
   @Get('profile')
   @UseGuards(JwtAuthGuard)
-  @ApiTags('Protected')
+  @ApiTags('User')
   @ApiBearerAuth('JWT-auth')
   @ApiOperation({
     summary: 'Get user profile',

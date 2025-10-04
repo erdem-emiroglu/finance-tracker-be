@@ -48,12 +48,16 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Finance Tracker API')
     .setDescription(
-      'Comprehensive authentication system with modern security features for finance tracking application',
+      'Comprehensive finance tracking application with authentication, transactions, savings goals, and financial analysis',
     )
     .setVersion('1.0')
     .addTag('Authentication', 'User authentication and authorization endpoints')
-    .addTag('Protected', 'Protected routes requiring authentication')
-    .addTag('Health', 'System health and monitoring endpoints')
+    .addTag(
+      'Finance',
+      'Finance management endpoints (transactions, categories, goals, tools)',
+    )
+    .addTag('User', 'User profile and account management')
+    .addTag('General', 'General application endpoints')
     .addBearerAuth(
       {
         type: 'http',
