@@ -1,14 +1,14 @@
-import { Controller, Get, UseGuards, Request } from '@nestjs/common';
+import { AuthUserDto, ErrorResponseDto } from '@auth/dto/auth.dto';
+import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
+import { Controller, Get, Request, UseGuards } from '@nestjs/common';
 import {
-  ApiTags,
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
-  ApiBearerAuth,
+  ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { AppService } from './app.service';
-import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
-import { ErrorResponseDto, AuthUserDto } from '@auth/dto/auth.dto';
 
 @Controller()
 export class AppController {

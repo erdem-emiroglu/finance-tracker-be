@@ -1,12 +1,12 @@
+import { REGEX_PATTERNS, REGEX_VALIDATION_MESSAGES } from '@constants/regex';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsEmail,
   IsString,
-  MinLength,
-  MaxLength,
   Matches,
+  MaxLength,
+  MinLength,
 } from 'class-validator';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { REGEX_PATTERNS, REGEX_VALIDATION_MESSAGES } from '@constants/regex';
 
 export class SignUpDto {
   @ApiProperty({
